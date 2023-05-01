@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ApiRestDesktopClient.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="UrlApiEntityFramework" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://localhost:7234/EmployeesEntityFramework/</Value>
+    </Setting>
+    <Setting Name="UrlApiDapper" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://localhost:7234/EmployeesDapper/</Value>
+    </Setting>
+    <Setting Name="UrlLogin" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://localhost:7234/Login/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

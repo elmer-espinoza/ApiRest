@@ -1,0 +1,130 @@
+﻿@model IEnumerable<ApiRestWebClient.Models.Employee>
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Extensions
+
+
+@{
+    ViewData["Title"] = "Listar";
+    Layout = null;
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Listar</h1>
+
+<style>
+    .LinkStyle {
+        text-decoration: none;
+        color: #000000;
+    }
+</style>
+
+<p>
+    @*
+    <a asp-action="Create">Create New</a> 
+    <input type="button" value="Crear Nuevo" class="btn btn-success" onclick="location.href='@Url.Action("Create", "Home", new { id=0, returnUrl = "Listar" + "/" + Context.Request.QueryString })'" />
+    *@
+
+    <input type="button" value="Crear Nuevo" class="btn btn-success" onclick="location.href='@Url.Action("Create", "Home", new { returnUrl = "Listar" + "/" + Context.Request.QueryString })'" />
+
+    Filtrar: @Html.TextBox("search") @Html.Hidden("sort")
+
+    <input type="button" value="&nbsp;Filtrar&nbsp;" class="btn btn-warning" onclick="location.href='@Url.Action("Listar", "Home")?search='+$('#search').val()+'&sort='+$('#sort').val()" />
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @*Html.DisplayNameFor(model => model.Id)*@
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Id), "Listar", new { sort = "Id" }, new { @class = "LinkStyle", onclick="this.href +='&search='+$('#search').val(); //$('#search').val('MY'); document.getElementById('search').value = 'MYCH'; " })
+            </th>
+            <th>
+                @*Html.DisplayNameFor(model => model.Nombre)*@
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Nombre), "Listar", new { sort = "Nombre" }, new { @class = "LinkStyle", onclick="this.href +='&search='+$('#search').val();" })
+            </th>
+            <th>
+                @*Html.DisplayNameFor(model => model.DNI)*@
+                @Html.ActionLink(Html.DisplayNameFor(model => model.DNI), "Listar", new { sort = "DNI" }, new { @class = "LinkStyle", onclick="this.href +='&search='+$('#search').val();" })
+            </th>
+            <th>
+                @*Html.DisplayNameFor(model => model.Edad)*@
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Edad), "Listar", new { sort = "Edad" }, new { @class = "LinkStyle", onclick="this.href +='&search='+$('#search').val();" })
+            </th>
+            <th>
+                @*Html.DisplayNameFor(model => model.Telefono)*@
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Telefono), "Listar", new { sort = "Telefono" }, new { @class = "LinkStyle", onclick="this.href +='&search='+$('#search').val();" })
+            </th>
+            <th>
+                @*Html.DisplayNameFor(model => model.Correo)*@
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Correo), "Listar", new { sort = "Correo" }, new { @class = "LinkStyle", onclick="this.href +='&search='+$('#search').val();" })
+            </th>
+            <th>
+                @*Html.DisplayNameFor(model => model.Basico)*@
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Basico), "Listar", new { sort = "Basico" }, new { @class = "LinkStyle", onclick="this.href +='&search='+$('#search').val();" })
+            </th>
+            <th>
+                @*Html.DisplayNameFor(model => model.Ingreso)*@
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Ingreso), "Listar", new { sort = "Ingreso" }, new { @class = "LinkStyle", onclick="this.href +='&search='+$('#search').val();" })
+            </th>
+            <th>
+                @*Html.DisplayNameFor(model => model.Activo)*@
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Activo), "Listar", new { sort = "Activo" }, new { @class = "LinkStyle", onclick="this.href +='&search='+$('#search').val();" })
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DNI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Correo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Basico)
+                </td>
+                <td>
+                    @*String.Format("{0:dd/MM/yy hh:mm}", item.Ingreso)*@
+                    @Html.DisplayFor(modelItem => item.Ingreso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activo)
+                </td>
+                <td>
+                    @*
+                    <input type="button" value="Editar" class="btn btn-primary" onclick="location.href='@Url.Action("Edit",   "Home", new { id=item.Id, returnUrl = Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.Path + "Listar" + "/" + Context.Request.QueryString } )'" />
+                    <input type="button" value="Eliminar" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Home", new { id=item.Id, returnUrl = Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.Path + "Listar" + "/" + Context.Request.QueryString } )'" />
+                    *@   
+
+                    <input type="button" value="Editar" class="btn btn-primary" onclick="location.href='@Url.Action("Edit",   "Home", new { id=item.Id, returnUrl = "Listar" + "/" + Context.Request.QueryString } )'" />
+                    <input type="button" value="Eliminar" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Home", new { id=item.Id, returnUrl = "Listar" + "/" + Context.Request.QueryString } )'" />
+
+                    <!--
+                    <input type="button" value="Detalles" class="btn btn-warning" onclick="location.href='@Url.Action("Read",   "Home", new { id=item.Id } )'" />
+
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                     -->
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
